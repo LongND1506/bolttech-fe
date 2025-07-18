@@ -1,0 +1,2 @@
+export const APP_PREFIX = 'BOLTTECH';
+export const ACCESS_TOKEN_KEY = `${APP_PREFIX}_ACCESS_TOKEN`;

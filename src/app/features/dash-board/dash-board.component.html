@@ -1,0 +1,28 @@
+<header>
+  <p-menubar [model]="MENU_ITEMS">
+    <ng-template #start> </ng-template>
+    <ng-template #item let-item let-root="root">
+      <a pRipple class="flex items-center p-menubar-item-link">
+        <span>{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <ng-template #end>
+      <p-avatar
+        pRipple
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+        shape="circle"
+        (click)="menu.toggle($event)"
+      />
+
+      <p-menu #menu [model]="USER_MENU_ITEMS" [popup]="true" />
+    </ng-template>
+  </p-menubar>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <small>Copyright &copy; 2023 - LongNd53</small>
+</footer>

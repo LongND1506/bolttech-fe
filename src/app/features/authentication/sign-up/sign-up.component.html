@@ -1,0 +1,82 @@
+<p-card class="form-container" header="Sign Up" [formGroup]="signUpForm">
+  <div class="flex flex-col gap-1 mb-4">
+    <input
+      class="w-full"
+      pInputText
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    @if (emailControl.invalid && (emailControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (emailControl.hasError('required')) { Email is Required. } @if
+      (emailControl.hasError('email')) { Please enter a valid email. }
+    </p-message>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1 mb-4">
+    <p-password
+      class="w-full"
+      inputStyleClass="w-full"
+      placeholder="Password"
+      formControlName="password"
+      [toggleMask]="true"
+    />
+    @if (passwordControl.invalid && (passwordControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (passwordControl.hasError('required')) { Password is Required. }
+    </p-message>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1 mb-4">
+    <input
+      pInputText
+      type="text"
+      placeholder="Driving License"
+      formControlName="drivingLicense"
+    />
+    @if (drivingLicenseControl.invalid && (drivingLicenseControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (drivingLicenseControl.hasError('required')) { Driving License is
+      Required. }
+      @if (drivingLicenseControl.hasError('pattern')) { Please enter a valid
+      Driving License. }
+    </p-message>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1 mb-4">
+    <p-datepicker
+      placeholder="Driving License Expiry"
+      formControlName="drivingLicenseExpiry"
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+    />
+
+    @if (drivingLicenseExpiryControl.invalid &&
+    (drivingLicenseExpiryControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (drivingLicenseExpiryControl.hasError('required')) { Driving License
+      Expiry is Required. }
+    </p-message>
+    }
+  </div>
+  <button
+    pButton
+    class="w-full"
+    severity="primary"
+    type="button"
+    [disabled]="!signUpForm.valid || isSubmitting()"
+    [loading]="isSubmitting()"
+    (click)="signUp()"
+  >
+    <span pButtonLabel>Submit</span>
+  </button>
+
+  <small class="flex justify-center items-center w-full">
+    If you have an account, please
+    <p-button label="Sign In" link routerLink="/sign-in"></p-button>.
+  </small>
+</p-card>

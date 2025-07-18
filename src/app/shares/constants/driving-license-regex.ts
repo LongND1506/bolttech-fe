@@ -1,0 +1,1 @@
+export const DRIVING_LICENSE_REGEX = /^[A-Z0-9-]+$/;

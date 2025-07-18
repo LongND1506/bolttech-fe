@@ -1,12 +1,21 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styles: [
+    `
+      :host {
+        display: flex;
+        height: 100vh
+      }
+    `,
+  ],
 })
-export class App {
-  protected readonly title = signal('bolttech-fe');
-}
+export class App {}

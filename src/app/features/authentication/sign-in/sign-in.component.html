@@ -1,0 +1,49 @@
+<p-card class="form-container" header="Sign In" [formGroup]="signInForm">
+  <div class="flex flex-col gap-1 mb-4">
+    <input
+      class="w-full"
+      pInputText
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    @if (emailControl.invalid && (emailControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (emailControl.hasError('required')) { Email is required. }
+      @if(emailControl.hasError('email')) { Please enter a valid email. }
+    </p-message>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1 mb-4">
+    <p-password
+      class="w-full"
+      inputStyleClass="w-full"
+      placeholder="Password"
+      formControlName="password"
+      [toggleMask]="true"
+    />
+    @if (passwordControl.invalid && (passwordControl.touched)) {
+    <p-message severity="error" size="small" variant="simple">
+      @if (passwordControl.hasError('required')) { Password is required. }
+    </p-message>
+    }
+  </div>
+
+  <button
+    pButton
+    class="w-full"
+    severity="primary"
+    type="button"
+    [disabled]="signInForm.invalid || isSubmitting()"
+    [loading]="isSubmitting()"
+    (click)="signIn()"
+  >
+    <span pButtonLabel>Submit</span>
+  </button>
+
+  <small class="flex justify-center items-center w-full">
+    If you have an account, please
+    <p-button label="Sign Up" link routerLink="/sign-up"></p-button>.
+  </small>
+</p-card>

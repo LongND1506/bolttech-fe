@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  p-avatar {
+    cursor: pointer;
+  }
+
+  main {
+    display: flex;
+    height: calc(100% - 3.5rem);
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+    background-color: var(--p-primary-color);
+    color: var(--p-stone-50);
+  }
+}

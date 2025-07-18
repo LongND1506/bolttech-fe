@@ -1,0 +1,12 @@
+@mixin auth-page-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: var(--p-primary-900);
+
+  .form-container {
+    width: 350px;
+  }
+}
