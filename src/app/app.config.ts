@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authenticationInterceptor])),
-    CookieService,
     provideAuthCheck(),
+    CookieService,
   ],
 };

@@ -1,12 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TokenStoreService } from '@/app/shares/services';
+import { UserProfileStore } from '@/app/shares/stores';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { MenubarModule } from 'primeng/menubar';
+import { DividerModule } from 'primeng/divider';
 import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
-
+import { TagModule } from 'primeng/tag';
 @Component({
   standalone: true,
   imports: [
@@ -15,30 +23,43 @@ import { RippleModule } from 'primeng/ripple';
     MenubarModule,
     MenuModule,
     AvatarModule,
-    RippleModule
+    RippleModule,
+    TagModule,
+    DividerModule,
+    RouterLink
   ],
   templateUrl: './dash-board.component.html',
   styleUrls: ['./dash-board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashBoardComponent {
+  private readonly userProfileStore = inject(UserProfileStore);
+  private readonly tokenStore = inject(TokenStoreService);
+
+  readonly userProfile = this.userProfileStore.user;
+  readonly userAvatarText = computed(() =>
+    this.userProfile()?.email?.slice(0, 1)
+  );
   readonly MENU_ITEMS: MenuItem[] = [
     {
-      label: 'Car',
+      label: 'Available Cars',
       icon: 'pi pi-car',
-      routerLink: '/dash-board',
+      routerLink: 'available-cars',
     },
     {
-      label: 'Booking',
+      label: 'Cars Management',
       icon: 'pi pi-calendar',
-      routerLink: '/dash-board/booking',
+      routerLink: 'cars-management',
     },
   ];
 
-  readonly USER_MENU_ITEMS: MenuItem[] = [
-    {
-      label: 'Logout',
-      icon: 'pi pi-sign-out',
-    },
-  ];
+  constructor() {
+    this.userProfileStore.getCurrentUser();
+  }
+
+  signOut(): void {
+    this.userProfileStore.clearUser();
+    this.tokenStore.removeAccessToken();
+    window.location.reload();
+  }
 }

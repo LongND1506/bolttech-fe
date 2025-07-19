@@ -2,17 +2,17 @@ import { Routes } from '@angular/router';
 
 export default [
   {
-    path: 'view-available-cars',
+    path: 'available-cars',
     loadComponent: () =>
       import('./view-available-cars').then((m) => m.ViewAvailableCarsComponent),
   },
   {
-    path: 'create-booking',
+    path: 'cars-management',
     loadComponent: () =>
-      import('./create-booking').then((m) => m.CreateBookingComponent),
+      import('./cars-management').then((m) => m.CarsManagementComponent),
   },
   {
     path: '**',
-    redirectTo: 'view-available-cars',
+    redirectTo: 'available-cars',
   },
 ] satisfies Routes;

@@ -10,3 +10,9 @@
     width: 350px;
   }
 }
+
+@mixin page-layout {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
