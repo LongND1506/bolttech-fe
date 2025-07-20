@@ -26,6 +26,7 @@
     @if (passwordControl.invalid && (passwordControl.touched)) {
     <p-message severity="error" size="small" variant="simple">
       @if (passwordControl.hasError('required')) { Password is required. }
+      @if (passwordControl.hasError('minlength')) { Minimum length is 8. }
     </p-message>
     }
   </div>

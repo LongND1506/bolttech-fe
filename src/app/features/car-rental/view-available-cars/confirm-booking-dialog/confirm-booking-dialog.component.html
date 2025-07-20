@@ -1,0 +1,38 @@
+<div class="mb-2">
+  <strong>Brand</strong>:
+  <span class="ml-3"> {{ car?.brand }}</span>
+</div>
+
+<div class="mb-2">
+  <strong>Model</strong>:
+  <span class="ml-3"> {{ car?.modelName }}</span>
+</div>
+
+<div class="mb-2">
+  <strong>Average Price</strong>:
+  <span class="ml-3"> {{ car?.averagePricePerDay }}$</span>
+</div>
+
+<div class="mb-2">
+  <strong>Total Price</strong>:
+  <span class="ml-3"> {{ car?.totalPrice }}$</span>
+</div>
+
+<div class="mb-2">
+  <strong>From - To</strong>:
+  <span class="ml-3">
+    {{ timeSlot?.[0] | date: DATE_FORMAT}} -
+    {{ timeSlot?.[1] | date: DATE_FORMAT }}
+  </span>
+</div>
+
+<div class="flex justify-end mt-5">
+  <p-button label="Confirm" (onClick)="dialogRef.close(true)"></p-button>
+
+  <p-button
+    severity="secondary"
+    class="ml-2"
+    label="Cancel"
+    (onClick)="dialogRef.close()"
+  ></p-button>
+</div>

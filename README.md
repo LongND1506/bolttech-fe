@@ -1,59 +1,80 @@
-# BolttechFe
+---
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
+# Bolt Car Rental – Frontend
 
-## Development server
+This is the frontend application for the **Bolt Car Rental** system. It is built using [Angular](https://angular.dev/), [PrimeNG](https://primeng.org/), and [Tailwind CSS](https://tailwindcss.com/). It communicates with a backend (NestJS + PostGre) to show car availability and manage bookings.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## Prerequisites
+Node.js (v20.19.3 or newer)
+
+---
+
+## Getting Started
+
+### 1. Install dependencies
+
+```sh
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. Environment configuration
 
-## Code scaffolding
+Edit environment files in `src/environments/` as needed for your backend API URLs and other settings.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 3. Run the development server
 
-```bash
-ng generate component component-name
+```sh
+npm run start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-```bash
-ng generate --help
+### 4. Build for production
+
+```sh
+npm run build
 ```
 
-## Building
+The build artifacts will be stored in the `dist/` directory.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Scripts
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `npm run start` – Start the development server
+- `npm run build` – Build for production
+- `npm run test` – Run unit tests with Karma
+---
 
-## Running unit tests
+## Technologies Used
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- [Angular 20+](https://angular.dev/)
+- [PrimeNG](https://primeng.org/) (UI components)
+- [Tailwind CSS](https://tailwindcss.com/) (utility-first CSS)
+- [RxJS](https://rxjs.dev/) (reactive programming)
+- [Lodash](https://lodash.com/) (utility functions)
+- [ngx-cookie-service](https://www.npmjs.com/package/ngx-cookie-service) (cookie management)
+- [Karma](https://karma-runner.github.io/) & [Jasmine](https://jasmine.github.io/) (testing)
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## Project Structure
 
-For end-to-end (e2e) testing, run:
+- `src/app/features/` – Feature modules (authentication, car rental, dashboard, etc.)
+- `src/app/shares/` – Shared modules (APIs, models, services, constants, etc.)
+- `src/environments/` – Environment configuration files
+- `src/styles.scss` – Global styles (includes Tailwind)
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular CLI Documentation](https://angular.dev/tools/cli)
+- [PrimeNG Documentation](https://primeng.org/setup)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs/installation)
+
+---
+
+Let me know if you want this as a new `README.md` or if you want to further customize any section!

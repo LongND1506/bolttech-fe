@@ -2,7 +2,7 @@ import { TokenStoreService } from '@/app/shares/services';
 import { inject, provideAppInitializer } from '@angular/core';
 import { Router } from '@angular/router';
 
-const ignoreAuthPage = ['/dash-board/sign-in', '/dash-board/sign-up'];
+const ignoreAuthPage = ['/sign-in', '/sign-up'];
 
 export const provideAuthCheck = () =>
   provideAppInitializer(() => {

@@ -1,0 +1,29 @@
+<div class="card">
+    <p-table [value]="bookings()" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template #header>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Price</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-booking>
+            <tr>
+                <td>{{ booking?.car?.brand }}</td>
+                <td>{{ booking?.car?.modelName }}</td>
+                <td>{{ booking.startDate | date: DATE_FORMAT }}</td>
+                <td>{{ booking.endDate | date: DATE_FORMAT }}</td>
+                <td>{{ booking.totalPrice }}$</td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+        <tr>
+            <td colspan="5">
+                <div class="flex justify-center">No bookings found</div>
+            </td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>

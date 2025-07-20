@@ -1,9 +1,13 @@
-import { Car } from "./car.model";
+import { Car } from './car.model';
 
 export interface Booking {
-    id: string;
-    email: string;
-    startDate: string;
-    endDate: string;
-    car: Car;
+  id: string;
+  startDate: string;
+  endDate: string;
+  car: Car;
+}
+
+export interface CreateBookingPayload
+  extends Pick<Booking, 'startDate' | 'endDate'> {
+  carId: string;
 }

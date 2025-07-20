@@ -4,6 +4,7 @@ import { InjectionToken } from '@angular/core';
 export const API_ENDPOINTS_CONFIG = {
   cars: '/cars',
   bookings: '/bookings',
+  bookingsHistory: '/bookings/history',
   getBookingById: '/bookings/:id',
   signIn: '/auth/sign-in',
   signUp: '/auth/sign-up',

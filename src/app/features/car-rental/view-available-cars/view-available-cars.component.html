@@ -1,1 +1,102 @@
-<h1>Viewsdasasdasdasd</h1>
+<p-datepicker
+  placeholder="Select time slot"
+  selectionMode="range"
+  [showClear]="true"
+  [readonlyInput]="true"
+  [formControl]="dateRangeControl"
+/>
+
+@if(!isLoading()) {
+<p-dataview #dv [value]="cars()" class="w-300">
+  <ng-template #list let-items>
+    <div class="grid grid-cols-12 gap-4 grid-nogutter">
+      @for (item of items; track $index) {
+      <div class="col-span-12"  [ngClass]="{ 'row-border': !$first }">
+        <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4">
+          <div class="md:w-40 relative">
+            <img
+              src="https://www.shutterstock.com/image-photo/modern-subcompact-crossover-suv-beautiful-600nw-2265832113.jpg"
+              class="block xl:block mx-auto rounded-border w-full"
+            />
+
+            @let isInStock = item.stock !== 0;
+
+            <p-tag
+              class="absolute dark:!bg-surface-900"
+              [value]="isInStock ? 'IN STOCK' : 'OUT STOCK'"
+              [severity]="isInStock ? 'success' : 'danger'"
+              [style.left.px]="4"
+              [style.top.px]="4"
+            />
+          </div>
+          <div
+            class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6"
+          >
+            <div
+              class="flex flex-row md:flex-col justify-between items-start gap-2"
+            >
+              <div>
+                <span class="font-medium text-secondary text-sm">{{
+                  item.brand
+                }}</span>
+                <div
+                  class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2"
+                >
+                  {{ item.modelName }}
+                </div>
+              </div>
+              <div
+                class="bg-surface-100 dark:bg-surface-700 p-1"
+                style="border-radius: 5px"
+              >
+                <div
+                  class="bg-surface-0 dark:bg-surface-900 flex items-center gap-2 justify-center py-1 px-2"
+                  style="
+                    border-radius: 5px;
+                    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04),
+                      0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+                  "
+                >
+                  <span
+                    class="text-surface-900 dark:text-surface-0 font-medium text-sm"
+                    >{{ item.stock }}</span
+                  >
+                  <i class="pi pi-car text-yellow-500"></i>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col md:items-end gap-8">
+              <span
+                class="text-xl font-semibold text-surface-900 dark:text-surface-0"
+                >Total Price: {{ "$" + item.totalPrice }}
+                <br />
+                <small
+                  >Average Price: {{ "$" + item.averagePricePerDay }}</small
+                >
+              </span>
+
+              <div class="flex flex-row-reverse md:flex-row gap-2">
+                <p-button
+                  class="flex-auto md:flex-initial whitespace-nowrap"
+                  label="Book now"
+                  [disabled]="item.stock === 0 || item.totalPrice === 0"
+                  (onClick)="onBookCar(item)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       }
+    </div>
+  </ng-template>
+</p-dataview>
+} @else {
+<p-progress-spinner
+  strokeWidth="8"
+  fill="transparent"
+  animationDuration=".5s"
+  [style]="{ width: '50px', height: '50px' }"
+/>
+}

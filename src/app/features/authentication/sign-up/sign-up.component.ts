@@ -16,7 +16,6 @@ import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { SignUpStore } from './sign-up.store';
-import { MessageService } from 'primeng/api';
 import { DRIVING_LICENSE_REGEX } from '@/app/shares/constants';
 
 type FormType = Record<keyof CreateUserPayload, AbstractControl>;
@@ -51,7 +50,7 @@ export class SignUpComponent {
   readonly isSubmitting = this.signUpStore.isLoading;
   readonly signUpForm = new FormGroup<FormType>({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     drivingLicense: new FormControl('', [Validators.required, Validators.pattern(DRIVING_LICENSE_REGEX)]),
     drivingLicenseExpiry: new FormControl('', [Validators.required]),
   });

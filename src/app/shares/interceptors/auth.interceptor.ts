@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { TokenStoreService } from '../services';
 import { inject } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 export const authenticationInterceptor: HttpInterceptorFn = (
@@ -34,7 +34,7 @@ export const authenticationInterceptor: HttpInterceptorFn = (
 
       //Handle other errors here
 
-      return next(req);
+      return throwError(() => err);
     })
   );
 };

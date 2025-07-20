@@ -2,4 +2,19 @@
 
 :host {
   @include layout.page-layout;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+
+  p-datepicker {
+    width: 200px;
+  }
+
+  p-dataview {
+    overflow-y: auto;
+  }
+
+  .row-border {
+    border-top: 1px solid var(--p-stone-200);
+  }
 }
