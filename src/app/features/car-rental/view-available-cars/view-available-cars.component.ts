@@ -1,30 +1,29 @@
+import { Car } from '@/app/shares/models';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { DataViewModule } from 'primeng/dataview';
+import { Button } from 'primeng/button';
+import { DataView } from 'primeng/dataview';
 import { DatePicker } from 'primeng/datepicker';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { Tag } from 'primeng/tag';
-import { filter, switchMap, take, tap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { AvailableCarsStore } from './available-cars.store';
 import { ConfirmBookingDialogComponent } from './confirm-booking-dialog/confirm-booking-dialog.component';
-import { Car } from '@/app/shares/models';
-import { Divider } from 'primeng/divider';
-import { NgClass } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
-    DataViewModule,
-    ButtonModule,
+    DataView,
+    Button,
     DatePicker,
     Tag,
     ReactiveFormsModule,
     ProgressSpinner,
     DynamicDialogModule,
-    NgClass
+    NgClass,
   ],
   providers: [AvailableCarsStore, DialogService],
   templateUrl: './view-available-cars.component.html',
@@ -50,10 +49,14 @@ export class ViewAvailableCarsComponent {
         tap((value) => {
           const [startDate, endDate] = value ?? [];
 
-          this.availableCarsStore.getAvailableCars(value ? {
-            startDate: startDate.toISOString(),
-            endDate: endDate.toISOString(),
-          } : undefined);
+          this.availableCarsStore.getAvailableCars(
+            value
+              ? {
+                  startDate: startDate.toISOString(),
+                  endDate: endDate.toISOString(),
+                }
+              : undefined
+          );
         }),
         takeUntilDestroyed()
       )
@@ -63,7 +66,7 @@ export class ViewAvailableCarsComponent {
   onBookCar(car: Car): void {
     const bookingData = {
       car,
-      timeSlot: this.dateRangeControl.value
+      timeSlot: this.dateRangeControl.value,
     };
 
     const ref = this.dialogService.open(ConfirmBookingDialogComponent, {
@@ -73,18 +76,20 @@ export class ViewAvailableCarsComponent {
       appendTo: 'body',
       modal: true,
       data: {
-        bookingData
+        bookingData,
       },
     });
 
     ref.onClose
       .pipe(
         filter((isConfirm) => isConfirm),
-        switchMap(() => this.availableCarsStore.bookCar({
-          carId: car.id,
-          startDate: this.dateRangeControl.value?.[0].toISOString() ?? '',
-          endDate: this.dateRangeControl.value?.[1].toISOString() ?? ''
-        }))
+        switchMap(() =>
+          this.availableCarsStore.bookCar({
+            carId: car.id,
+            startDate: this.dateRangeControl.value?.[0].toISOString() ?? '',
+            endDate: this.dateRangeControl.value?.[1].toISOString() ?? '',
+          })
+        )
       )
       .subscribe();
   }
